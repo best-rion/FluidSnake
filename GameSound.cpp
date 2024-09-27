@@ -17,8 +17,12 @@ GameSound::GameSound(const std::string filename)
             file >> type >> soundName >> soundFile >> volume;
 
             sf::SoundBuffer buffer;
+<<<<<<< HEAD
 
             if (buffer.loadFromFile("resources/sounds/"+soundFile))
+=======
+            if (buffer.loadFromFile(soundFile))
+>>>>>>> 032c0821c74b8fe69a78c26c76948be94564b40a
             {
                 _soundBuffers[i] = buffer;
                 _sounds[soundName] = sf::Sound();

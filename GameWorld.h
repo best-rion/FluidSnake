@@ -5,9 +5,12 @@
 #include "Wave.h"
 #include "GameObjects.h"
 
+<<<<<<< HEAD
 #define HEIGHT 720
 #define WIDTH  640
 
+=======
+>>>>>>> 032c0821c74b8fe69a78c26c76948be94564b40a
 class GameWorld
 {
 public:

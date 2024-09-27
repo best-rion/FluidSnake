@@ -16,9 +16,12 @@
 #include "PlayerInputs.h"
 #include "ReplayInputs.h"
 
+<<<<<<< HEAD
 #define HEIGHT 800
 #define WIDTH  720
 
+=======
+>>>>>>> 032c0821c74b8fe69a78c26c76948be94564b40a
 std::string intToString(int i)
 {
     std::ostringstream convert;   // stream used for the conversion
@@ -32,7 +35,11 @@ int main(int argc, const char* argv[])
 {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 4;
+<<<<<<< HEAD
     sf::RenderWindow window(sf::VideoMode(WIDTH,  HEIGHT), "Snake", sf::Style::Default);
+=======
+    sf::RenderWindow window(sf::VideoMode(500, 500), "Snake", sf::Style::Default);
+>>>>>>> 032c0821c74b8fe69a78c26c76948be94564b40a
     window.setVerticalSyncEnabled(true);
 
     GameSound soundManager("sounds");
@@ -53,8 +60,13 @@ int main(int argc, const char* argv[])
     //soundManager.play("ambience");
 
     sf::RenderTexture screen, bloom, bloomRenderer;
+<<<<<<< HEAD
     screen.create(WIDTH, HEIGHT);
     bloom.create(WIDTH, HEIGHT);
+=======
+    screen.create(500, 500);
+    bloom.create(500, 500);
+>>>>>>> 032c0821c74b8fe69a78c26c76948be94564b40a
     bloomRenderer.create(375, 375);
 
     waves.push_front(Wave(25, 23, 30, 1));
@@ -77,9 +89,15 @@ int main(int argc, const char* argv[])
     sf::Clock dangerClock;
 
     std::vector<WavePoint> map;
+<<<<<<< HEAD
     for (int i(0); i<WIDTH/10; ++i)
     {
         for (int j(0); j<(HEIGHT-40)/10; ++j) {map.push_back(WavePoint(i, j));}
+=======
+    for (int i(0); i<50; ++i)
+    {
+        for (int j(0); j<46; ++j) {map.push_back(WavePoint(i, j));}
+>>>>>>> 032c0821c74b8fe69a78c26c76948be94564b40a
     }
 
     Wave::surround = &map;
@@ -232,8 +250,13 @@ int main(int argc, const char* argv[])
                     snake.addLife(-100/(distToSnake+1));
 
                 /*
+<<<<<<< HEAD
                 bomb.x = rand()%(WIDTH/10);
                 bomb.y = rand()%((HEIGHT-40)/10);
+=======
+                bomb.x = rand()%50;
+                bomb.y = rand()%46;
+>>>>>>> 032c0821c74b8fe69a78c26c76948be94564b40a
                 */
 
                 if (bombCount > 0)

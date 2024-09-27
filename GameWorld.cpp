@@ -1,7 +1,10 @@
 #include "GameWorld.h"
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 032c0821c74b8fe69a78c26c76948be94564b40a
 GameWorld::GameWorld(int width, int height) :
     _width(width),
     _height(height),

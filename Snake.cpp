@@ -2,10 +2,13 @@
 
 #include <iostream>
 
+<<<<<<< HEAD
 #define HEIGHT 800
 #define WIDTH  720
 
 
+=======
+>>>>>>> 032c0821c74b8fe69a78c26c76948be94564b40a
 Snake::Snake(int arg_x, int arg_y)
 {
     addNode(arg_x, arg_y);
@@ -42,11 +45,19 @@ void Snake::progress()
 
     head.x += _vx;
     head.y += _vy;
+<<<<<<< HEAD
     head.x %= (WIDTH/10);
     head.y %= ((HEIGHT-40)/10);
 
     if (head.x < 0) head.x += WIDTH/10;
     if (head.y < 0) head.y += (HEIGHT-40)/10;;
+=======
+    head.x %= 50;
+    head.y %= 46;
+
+    if (head.x < 0) head.x += 50;
+    if (head.y < 0) head.y += 46;
+>>>>>>> 032c0821c74b8fe69a78c26c76948be94564b40a
 
     checkAutoCollision();
 

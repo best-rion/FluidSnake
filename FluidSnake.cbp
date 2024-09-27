@@ -13,7 +13,16 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="/home/hossain/SFML-2.6.1/include" />
 				</Compiler>
+				<Linker>
+					<Add library="sfml-graphics" />
+					<Add library="sfml-audio" />
+					<Add library="sfml-window" />
+					<Add library="sfml-network" />
+					<Add library="sfml-system" />
+					<Add directory="/home/hossain/SFML-2.6.1/lib" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/FluidSnake" prefix_auto="1" extension_auto="1" />
@@ -32,6 +41,21 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="EventProvider.cpp" />
+		<Unit filename="EventProvider.h" />
+		<Unit filename="GameAction.h" />
+		<Unit filename="GameObjects.h" />
+		<Unit filename="GameSound.cpp" />
+		<Unit filename="GameSound.h" />
+		<Unit filename="GameWorld.cpp" />
+		<Unit filename="GameWorld.h" />
+		<Unit filename="PlayerInputs.cpp" />
+		<Unit filename="PlayerInputs.h" />
+		<Unit filename="ReplayInputs.cpp" />
+		<Unit filename="ReplayInputs.h" />
+		<Unit filename="Snake.cpp" />
+		<Unit filename="Snake.h" />
+		<Unit filename="Wave.h" />
 		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>
