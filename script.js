@@ -464,16 +464,6 @@ var waveNumberForFood = 0;
 function waveAnimation()
 {
 
-    if(count%10==0){
-        waveRadiusForFood[waveNumberForFood] = 0;
-        waveNumberForFood++;
-        if(waveNumberForFood == MAX_WAVES_FOR_FOOD)
-        {
-            waveNumberForFood=0;
-        }
-    }
-
-
     for (var y=0; y<height; y++)
     {
         for (var x=0; x<width; x++)
@@ -552,7 +542,7 @@ function waveAnimation()
         if (waveRadiusForBite[k] != -1)
         {
             waveRadiusForBite[k]++;
-            if(waveRadiusForBite[k]>40)
+            if(waveRadiusForBite[k]>30)
             {
                 waveRadiusForBite[k] = -1;
             }
@@ -563,7 +553,7 @@ function waveAnimation()
     {
         if (waveRadiusForFood[i] != -1){
             waveRadiusForFood[i]++;
-            if(waveRadiusForFood[i]>20)
+            if(waveRadiusForFood[i]>18)
             {
                 waveRadiusForFood[i] = -1;
             }
@@ -575,7 +565,7 @@ function waveAnimation()
         {
             if (waveRadiusForTurn[i] != -1){
                 waveRadiusForTurn[i]++;
-                if(waveRadiusForTurn[i]>20)
+                if(waveRadiusForTurn[i]>18)
                 {
                     waveRadiusForTurn[i] = -1;
                 }
@@ -583,9 +573,14 @@ function waveAnimation()
             }
         }
 
-
-    count++;
-    if(count == 5000){
-        count=0;
+    if(count==11){
+        waveRadiusForFood[waveNumberForFood] = 0;
+        waveNumberForFood++;
+        if(waveNumberForFood == MAX_WAVES_FOR_FOOD)
+        {
+            waveNumberForFood=0;
+        }
+        count = 0;
     }
+    count++;
 }
