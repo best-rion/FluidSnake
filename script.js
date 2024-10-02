@@ -108,7 +108,7 @@ function changeButtonState()
     }
 }
 
-var id = setInterval(frame, 120);
+var id = setInterval(frame, 150);
 var gameOver = false;
 
 var cellDivs = [head];
@@ -454,7 +454,7 @@ function frame()
     }
 }
 
-var newInterval = setInterval( waveAnimation, 140);
+var newInterval = setInterval( waveAnimation, 160);
 var count = 0;
 var waveNumberForFood = 0;
 function waveAnimation()
@@ -549,7 +549,7 @@ function waveAnimation()
     }
 
 
-    if(count==15){
+    if(count==11){
         waveRadiusForFood[waveNumberForFood] = 0;
         waveNumberForFood++;
         if(waveNumberForFood == MAX_WAVES_FOR_FOOD)
