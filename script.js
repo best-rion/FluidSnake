@@ -112,7 +112,7 @@ function changeButtonState()
     }
 }
 
-var id = setInterval(frame, 100);
+var id = setInterval(frame, 120);
 var gameOver = false;
 
 var cellDivs = [head];
@@ -458,7 +458,7 @@ function frame()
     }
 }
 
-var newInterval = setInterval( waveAnimation, 110 );
+var newInterval = setInterval( waveAnimation, 140);
 var count = 0;
 var waveNumberForFood = 0;
 function waveAnimation()
@@ -477,14 +477,15 @@ function waveAnimation()
     for (var y=0; y<height; y++)
     {
         for (var x=0; x<width; x++)
-        {
+        {    
+            var angle 
             var opacity = 2;
             for ( var k=0; k<MAX_WAVES_FOR_BITE; k++)
             {
                 if (waveRadiusForBite[k] != -1)
                 {
 
-                    var angle = myAtan( (x - foodPositions[k].x) , (y - foodPositions[k].y) );
+                    angle = myAtan( (x - foodPositions[k].x) , (y - foodPositions[k].y) );
     
                     opacity +=  1.2*Math.pow(2.71828, -( 
                                                        Math.pow( Math.abs( waveRadiusForBite[k]*Math.cos(angle) - (x - foodPositions[k].x) ) ,2)
@@ -502,7 +503,7 @@ function waveAnimation()
             {
                 if (waveRadiusForFood[i] != -1)
                 {
-                    var angle = myAtan( (x - foodIndex.x) , (y - foodIndex.y) );
+                    angle = myAtan( (x - foodIndex.x) , (y - foodIndex.y) );
         
                     opacity +=  0.8*Math.pow(2.71828, -( 
                                                         Math.pow( Math.abs( waveRadiusForFood[i]*Math.cos(angle) - (x - foodIndex.x) ) ,2)
@@ -519,7 +520,7 @@ function waveAnimation()
                 {
                     if (waveRadiusForTurn[i] != -1)
                     {
-                        var angle = myAtan( (x - turnPositions[i].x) , (y - turnPositions[i].y) );
+                        angle = myAtan( (x - turnPositions[i].x) , (y - turnPositions[i].y) );
             
                         opacity +=  1*Math.pow(2.71828, -( 
                                                             Math.pow( Math.abs( waveRadiusForTurn[i]*Math.cos(angle) - (x - turnPositions[i].x) ) ,2)
