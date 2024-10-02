@@ -187,18 +187,18 @@ function frame()
                 if (e.keyCode == '38' && lastKey != "bottom")
                 {
                     key = "top";
-                    //waveRadiusForTurn[waveNumberForTurn] = 0;
-                    //turnPositions[waveNumberForTurn].x = headIndex.x;
-                    //turnPositions[waveNumberForTurn].y = headIndex.y;
-                    //waveNumberForTurn++;
+                    waveRadiusForTurn[waveNumberForTurn] = 0;
+                    turnPositions[waveNumberForTurn].x = headIndex.x;
+                    turnPositions[waveNumberForTurn].y = headIndex.y;
+                    waveNumberForTurn++;
                 }
                 else if (e.keyCode == '39' && lastKey != "left")
                 {
                     key = "right";
-                    //waveRadiusForTurn[waveNumberForTurn] = 0;
-                    //turnPositions[waveNumberForTurn].x = headIndex.x;
-                    //turnPositions[waveNumberForTurn].y = headIndex.y;
-                    //waveNumberForTurn++;
+                    waveRadiusForTurn[waveNumberForTurn] = 0;
+                    turnPositions[waveNumberForTurn].x = headIndex.x;
+                    turnPositions[waveNumberForTurn].y = headIndex.y;
+                    waveNumberForTurn++;
                 }
                 else if (e.keyCode == '40' && lastKey != "top")
                 {
@@ -257,19 +257,19 @@ function frame()
                     {
                         /* left swipe */
                         swipe = "left";
-                        waveRadiusForTurn[waveNumberForTurn] = 0;
-                        turnPositions[waveNumberForTurn].x = headIndex.x;
-                        turnPositions[waveNumberForTurn].y = headIndex.y;
-                        waveNumberForTurn++;
+                        //waveRadiusForTurn[waveNumberForTurn] = 0;
+                        //turnPositions[waveNumberForTurn].x = headIndex.x;
+                        //turnPositions[waveNumberForTurn].y = headIndex.y;
+                        //waveNumberForTurn++;
                     }
                     else if ((xDiff < 0) && (lastSwipe != "left")) 
                     {
                         /* right swipe */
                         swipe = "right";
-                        waveRadiusForTurn[waveNumberForTurn] = 0;
-                        turnPositions[waveNumberForTurn].x = headIndex.x;
-                        turnPositions[waveNumberForTurn].y = headIndex.y;
-                        waveNumberForTurn++;
+                        //waveRadiusForTurn[waveNumberForTurn] = 0;
+                        //turnPositions[waveNumberForTurn].x = headIndex.x;
+                        //turnPositions[waveNumberForTurn].y = headIndex.y;
+                        //waveNumberForTurn++;
                     }
                 }
                 else
