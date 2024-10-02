@@ -99,7 +99,7 @@ var waveNumberForBite = 0;
 
 
 
-const MAX_WAVES_FOR_FOOD = 2;
+const MAX_WAVES_FOR_FOOD = 8;
 var waveRadiusForFood = new Array(MAX_WAVES_FOR_FOOD);
 for( var i=0; i<MAX_WAVES_FOR_FOOD; i++)
 {
@@ -410,36 +410,57 @@ function frame()
     }
 }
 
-var newInterval = setInterval( waveAnimation, 160);
+var newInterval = setInterval( waveAnimation, 120);
 var count = 0;
 var waveNumberForFood = 0;
+
+var foodOnce = new Array(MAX_WAVES_FOR_FOOD);
+var biteOnce = new Array(MAX_WAVES_FOR_BITE);
+
 function waveAnimation()
 {
+    var turnOnce = true;
+    
+    for (var i=0; i<MAX_WAVES_FOR_FOOD; i++)
+    {
+        foodOnce[i] = true;
+    }
+
+    for (var i=0; i<MAX_WAVES_FOR_BITE; i++)
+    {
+        biteOnce[i] = true;
+    }
+
 
     for (var y=0; y<height; y++)
     {
         for (var x=0; x<width; x++)
         {    
-            var angle 
+            var dist;
             var opacity = 2;
             for ( var k=0; k<MAX_WAVES_FOR_BITE; k++)
             {
-                if (waveRadiusForBite[k] != -1)
+
+                if (waveRadiusForBite[k] != -1 && dist <= 30)
                 {
+                    dist = distance( (x - foodPositions[k].x), (y - foodPositions[k].y) );
 
-                    var dist = distance( (x - foodPositions[k].x), (y - foodPositions[k].y) );
-
-    
-                    opacity +=  1.2*Math.exp( -1*( waveRadiusForBite[k]- dist )*( waveRadiusForBite[k]- dist ) ) ;
-                    if (x==0 && y==0)
+                    if (dist <= 30)
                     {
-                        waveRadiusForBite[k]++;
-                        if(waveRadiusForBite[k]>30)
+    
+                        opacity +=  1.2*Math.exp( -1*( waveRadiusForBite[k]- dist )*( waveRadiusForBite[k]- dist ) ) ;
+    
+                        if (biteOnce[k])
                         {
-                            waveRadiusForBite[k] = -1;
+                            waveRadiusForBite[k]++;
+                            if(waveRadiusForBite[k]>30)
+                            {
+                                waveRadiusForBite[k] = -1;
+                            }
+                            biteOnce[k] = false;
                         }
+
                     }
-                    
 
                 }
 
@@ -447,46 +468,39 @@ function waveAnimation()
 
             for(var i=0; i<MAX_WAVES_FOR_FOOD; i++)
             {
-                if (waveRadiusForFood[i] != -1)
+                dist = distance( (x - foodIndex.x) , (y - foodIndex.y) );
+                
+                if (waveRadiusForFood[i] != -1 && dist <= 18)
                 {
-                    angle = Math.atan2( (x - foodIndex.x) , (y - foodIndex.y) );
-        
-                    opacity +=  0.8*Math.exp(-( 
-                                                        Math.pow( Math.abs( waveRadiusForFood[i]*Math.cos(angle) - (x - foodIndex.x) ) ,2)
-                                                        +
-                                                        Math.pow( Math.abs( waveRadiusForFood[i]*Math.sin(angle) - (y - foodIndex.y) ) ,2) 
-                                                    ));
-                    if (x==0 && y==0){
+                    opacity +=  0.8*Math.exp( -1*( waveRadiusForFood[i] - dist )*( waveRadiusForFood[i] - dist ) );
+
+                     if (foodOnce[i]){
                         waveRadiusForFood[i]++;
                         if(waveRadiusForFood[i]>18)
                         {
                             waveRadiusForFood[i] = -1;
                         }
+                         foodOnce[i] = false;
             
-                    }
+                     }
                     
                 }
 
             }
 
-            
-
-            if (waveRadiusForTurn != -1 && dist((x - turnPositionX) , (y - turnPositionY)) <=12)
+            dist = distance( (x - turnPositionX) , (y - turnPositionY) );
+            if (waveRadiusForTurn != -1 && dist <=12)
             {
-                angle = Math.atan2( (x - turnPositionX) , (y - turnPositionY) );
-    
-                opacity +=  0.8*Math.exp(-( 
-                                                    Math.pow( Math.abs( waveRadiusForTurn*Math.cos(angle) - (x - turnPosition) ) ,2)
-                                                    +
-                                                    Math.pow( Math.abs( waveRadiusForTurn*Math.sin(angle) - (y - turnPositionY) ) ,2) 
-                                                ));
-                if (x==0 && y==0){
+                
+                opacity +=  1*Math.exp(-1*( waveRadiusForTurn - dist)*( waveRadiusForTurn - dist) );
+                
+                if (turnOnce){
                     waveRadiusForTurn++;
                     if(waveRadiusForTurn>12)
                     {
                         waveRadiusForTurn = -1;
                     }
-        
+                    turnOnce = false;
                 }
                 
             }
