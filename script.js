@@ -81,6 +81,8 @@ function changeButtonState()
 
 var id = setInterval(frame, 150);
 var gameOver = false;
+var gameOverPosition = {x:null, y:null};
+var waveRadiusForGameOver = 0;
 
 var cellDivs = [head];
 var headIndex = {x: 0, y: 0};
@@ -131,6 +133,14 @@ function frame()
         gameOverDiv.innerHTML = "GAME OVER";
         gameOverDiv.style.display = "block";
         clearInterval(id);
+        gameOverPosition = headIndex;
+        for (var i=0; i<bodySize; i++)
+        {
+            cellDivs[i].style.display = "none";
+            tail1.style.display = "none";
+            tail2.style.display = "none";
+            tail3.style.display = "none";
+        }
     }
     else
     {
@@ -420,7 +430,7 @@ var biteOnce = new Array(MAX_WAVES_FOR_BITE);
 function waveAnimation()
 {
     var turnOnce = true;
-    
+
     for (var i=0; i<MAX_WAVES_FOR_FOOD; i++)
     {
         foodOnce[i] = true;
@@ -492,7 +502,7 @@ function waveAnimation()
             if (waveRadiusForTurn != -1 && dist <=12)
             {
                 
-                opacity +=  1*Math.exp(-1*( waveRadiusForTurn - dist)*( waveRadiusForTurn - dist) );
+                opacity +=  1.5*Math.exp(-1*( waveRadiusForTurn - dist)*( waveRadiusForTurn - dist) );
                 
                 if (turnOnce){
                     waveRadiusForTurn++;
@@ -504,6 +514,12 @@ function waveAnimation()
                 }
                 
             }
+
+            if(gameOver)
+            {
+                dist = distance( (x - gameOverPosition.x) , (y - gameOverPosition.y) );
+                opacity +=  4*Math.exp(-1*( waveRadiusForGameOver - dist)*( waveRadiusForTurn - dist) );
+            }
     
 
 
@@ -511,6 +527,13 @@ function waveAnimation()
             grid[y][x].style.height = Math.round(opacity) + "px";
         }
     }
+    if(gameOver)
+    {
+        if(waveRadiusForGameOver<40){
+            waveRadiusForGameOver++;
+        }
+    }
+    console.log(waveRadiusForGameOver);
 
 
     if(count==10){
