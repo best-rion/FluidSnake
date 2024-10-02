@@ -132,7 +132,7 @@ var waveNumberForBite = 0;
 
 
 
-const MAX_WAVES_FOR_FOOD = 5;
+const MAX_WAVES_FOR_FOOD = 3;
 var waveRadiusForFood = new Array(MAX_WAVES_FOR_FOOD);
 for( var i=0; i<MAX_WAVES_FOR_FOOD; i++)
 {
