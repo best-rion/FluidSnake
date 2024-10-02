@@ -34,7 +34,7 @@ function myAtan(x, y)
 
 var container = document.getElementById("container");
 
-var containerWidth = 500, containerHeight = 800;
+var containerWidth = 600, containerHeight = 720;
 var width = containerWidth/20;
 var height = containerHeight/20;
 
