@@ -473,7 +473,7 @@ function waveAnimation()
 
                     angle = myAtan( (x - foodPositions[k].x) , (y - foodPositions[k].y) );
     
-                    opacity +=  1.2*Math.pow(2.71828, -( 
+                    opacity +=  1.2*Math.exp(-( 
                                                        Math.pow( Math.abs( waveRadiusForBite[k]*Math.cos(angle) - (x - foodPositions[k].x) ) ,2)
                                                        +
                                                        Math.pow( Math.abs( waveRadiusForBite[k]*Math.sin(angle) - (y - foodPositions[k].y) ) ,2) 
@@ -498,7 +498,7 @@ function waveAnimation()
                 {
                     angle = myAtan( (x - foodIndex.x) , (y - foodIndex.y) );
         
-                    opacity +=  0.8*Math.pow(2.71828, -( 
+                    opacity +=  0.8*Math.exp(-( 
                                                         Math.pow( Math.abs( waveRadiusForFood[i]*Math.cos(angle) - (x - foodIndex.x) ) ,2)
                                                         +
                                                         Math.pow( Math.abs( waveRadiusForFood[i]*Math.sin(angle) - (y - foodIndex.y) ) ,2) 
@@ -524,7 +524,7 @@ function waveAnimation()
                     {
                         angle = myAtan( (x - turnPositions[i].x) , (y - turnPositions[i].y) );
             
-                        opacity +=  0.8*Math.pow(2.71828, -( 
+                        opacity +=  0.8*Math.exp(-( 
                                                             Math.pow( Math.abs( waveRadiusForTurn[i]*Math.cos(angle) - (x - turnPositions[i].x) ) ,2)
                                                             +
                                                             Math.pow( Math.abs( waveRadiusForTurn[i]*Math.sin(angle) - (y - turnPositions[i].y) ) ,2) 
