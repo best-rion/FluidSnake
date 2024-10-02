@@ -132,7 +132,7 @@ var waveNumberForBite = 0;
 
 
 
-const MAX_WAVES_FOR_FOOD = 3;
+const MAX_WAVES_FOR_FOOD = 2;
 var waveRadiusForFood = new Array(MAX_WAVES_FOR_FOOD);
 for( var i=0; i<MAX_WAVES_FOR_FOOD; i++)
 {
@@ -140,7 +140,7 @@ for( var i=0; i<MAX_WAVES_FOR_FOOD; i++)
 }
 
 
-const MAX_WAVES_FOR_TURN = 4;
+const MAX_WAVES_FOR_TURN = 3;
 var waveRadiusForTurn = new Array(MAX_WAVES_FOR_TURN);
 var turnPositions = new Array(MAX_WAVES_FOR_TURN);
 for( var i=0; i<MAX_WAVES_FOR_TURN; i++)
