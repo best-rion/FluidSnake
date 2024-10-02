@@ -524,14 +524,14 @@ function waveAnimation()
                     {
                         angle = myAtan( (x - turnPositions[i].x) , (y - turnPositions[i].y) );
             
-                        opacity +=  1*Math.pow(2.71828, -( 
+                        opacity +=  0.8*Math.pow(2.71828, -( 
                                                             Math.pow( Math.abs( waveRadiusForTurn[i]*Math.cos(angle) - (x - turnPositions[i].x) ) ,2)
                                                             +
                                                             Math.pow( Math.abs( waveRadiusForTurn[i]*Math.sin(angle) - (y - turnPositions[i].y) ) ,2) 
                                                         ));
                         if (x==0 && y==0){
                             waveRadiusForTurn[i]++;
-                            if(waveRadiusForTurn[i]>18)
+                            if(waveRadiusForTurn[i]>12)
                             {
                                 waveRadiusForTurn[i] = -1;
                             }
@@ -549,7 +549,7 @@ function waveAnimation()
     }
 
 
-    if(count==11){
+    if(count==10){
         waveRadiusForFood[waveNumberForFood] = 0;
         waveNumberForFood++;
         if(waveNumberForFood == MAX_WAVES_FOR_FOOD)
