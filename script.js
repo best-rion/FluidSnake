@@ -34,7 +34,7 @@ function myAtan(x, y)
 
 var container = document.getElementById("container");
 
-var containerWidth = 700, containerHeight = 800;
+var containerWidth = 500, containerHeight = 800;
 var width = containerWidth/20;
 var height = containerHeight/20;
 
@@ -486,7 +486,7 @@ function waveAnimation()
 
                     var angle = myAtan( (x - foodPositions[k].x) , (y - foodPositions[k].y) );
     
-                    opacity +=  4*Math.pow(2.71828, -( 
+                    opacity +=  3*Math.pow(2.71828, -( 
                                                        Math.pow( Math.abs( waveRadiusForBite[k]*Math.cos(angle) - (x - foodPositions[k].x) ) ,2)
                                                        +
                                                        Math.pow( Math.abs( waveRadiusForBite[k]*Math.sin(angle) - (y - foodPositions[k].y) ) ,2) 
@@ -521,7 +521,7 @@ function waveAnimation()
                     {
                         var angle = myAtan( (x - turnPositions[i].x) , (y - turnPositions[i].y) );
             
-                        opacity +=  3*Math.pow(2.71828, -( 
+                        opacity +=  2*Math.pow(2.71828, -( 
                                                             Math.pow( Math.abs( waveRadiusForTurn[i]*Math.cos(angle) - (x - turnPositions[i].x) ) ,2)
                                                             +
                                                             Math.pow( Math.abs( waveRadiusForTurn[i]*Math.sin(angle) - (y - turnPositions[i].y) ) ,2) 
