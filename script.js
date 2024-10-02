@@ -39,13 +39,11 @@ var width = containerWidth/20;
 var height = containerHeight/20;
 
 var grid = [];
-var arrayOfPointSize = []
 
 // Grid creation //
 for (var y=0; y<containerHeight; y+=20)
 {
     var row = [];
-    var arrayOfPointSizeRow = [];
 
     for (var x=0; x<containerWidth; x+=20)
     {
@@ -59,10 +57,8 @@ for (var y=0; y<containerHeight; y+=20)
 
         row.push( fluidPoint );
 
-        arrayOfPointSizeRow.push(2);
     }
     grid.push( row );
-    arrayOfPointSize.push(arrayOfPointSizeRow);
 }
 
 
@@ -482,7 +478,14 @@ function waveAnimation()
                                                        +
                                                        Math.pow( Math.abs( waveRadiusForBite[k]*Math.sin(angle) - (y - foodPositions[k].y) ) ,2) 
                                                     ));
-
+                    if (x==0 && y==0)
+                    {
+                        waveRadiusForBite[k]++;
+                        if(waveRadiusForBite[k]>30)
+                        {
+                            waveRadiusForBite[k] = -1;
+                        }
+                    }
                     
 
                 }
@@ -500,6 +503,15 @@ function waveAnimation()
                                                         +
                                                         Math.pow( Math.abs( waveRadiusForFood[i]*Math.sin(angle) - (y - foodIndex.y) ) ,2) 
                                                     ));
+                    if (x==0 && y==0){
+                        waveRadiusForFood[i]++;
+                        if(waveRadiusForFood[i]>18)
+                        {
+                            waveRadiusForFood[i] = -1;
+                        }
+            
+                    }
+                    
                 }
 
             }
@@ -517,63 +529,27 @@ function waveAnimation()
                                                             +
                                                             Math.pow( Math.abs( waveRadiusForTurn[i]*Math.sin(angle) - (y - turnPositions[i].y) ) ,2) 
                                                         ));
+                        if (x==0 && y==0){
+                            waveRadiusForTurn[i]++;
+                            if(waveRadiusForTurn[i]>18)
+                            {
+                                waveRadiusForTurn[i] = -1;
+                            }
+                
+                        }
+                        
                     }
     
                 }
 
 
-            arrayOfPointSize[y][x] = opacity;
-        }
-    }
-    for (var y=0; y<height; y++)
-    {
-        for (var x=0; x<width; x++)
-        {
-            grid[y][x].style.width = Math.round(arrayOfPointSize[y][x]) + "px";
-            grid[y][x].style.height = Math.round(arrayOfPointSize[y][x]) + "px";
+            grid[y][x].style.width = Math.round(opacity) + "px";
+            grid[y][x].style.height = Math.round(opacity) + "px";
         }
     }
 
 
-
-
-    for ( var k=0; k<MAX_WAVES_FOR_BITE; k++)
-    {
-        if (waveRadiusForBite[k] != -1)
-        {
-            waveRadiusForBite[k]++;
-            if(waveRadiusForBite[k]>30)
-            {
-                waveRadiusForBite[k] = -1;
-            }
-        }
-    }
-
-    for(var i=0; i<MAX_WAVES_FOR_FOOD; i++)
-    {
-        if (waveRadiusForFood[i] != -1){
-            waveRadiusForFood[i]++;
-            if(waveRadiusForFood[i]>18)
-            {
-                waveRadiusForFood[i] = -1;
-            }
-
-        }
-    }
-
-    for(var i=0; i<MAX_WAVES_FOR_TURN; i++)
-        {
-            if (waveRadiusForTurn[i] != -1){
-                waveRadiusForTurn[i]++;
-                if(waveRadiusForTurn[i]>18)
-                {
-                    waveRadiusForTurn[i] = -1;
-                }
-    
-            }
-        }
-
-    if(count==11){
+    if(count==15){
         waveRadiusForFood[waveNumberForFood] = 0;
         waveNumberForFood++;
         if(waveNumberForFood == MAX_WAVES_FOR_FOOD)
