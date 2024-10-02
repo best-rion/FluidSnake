@@ -81,7 +81,6 @@ function changeButtonState()
 
 var id = setInterval(frame, 150);
 var gameOver = false;
-var gameOverPosition = {x:null, y:null};
 var waveRadiusForGameOver = 0;
 
 var cellDivs = [head];
@@ -123,7 +122,6 @@ function frame()
         if ( cellIndex.x == headIndex.x && cellIndex.y == headIndex.y )
         {
             gameOver = true;
-            cellDivs[i].style.backgroundColor = "#ff0000";
         }
     }
 
@@ -133,7 +131,6 @@ function frame()
         gameOverDiv.innerHTML = "GAME OVER";
         gameOverDiv.style.display = "block";
         clearInterval(id);
-        gameOverPosition = headIndex;
         for (var i=0; i<bodySize; i++)
         {
             cellDivs[i].style.display = "none";
@@ -458,7 +455,7 @@ function waveAnimation()
                     if (dist <= 30)
                     {
     
-                        opacity +=  1.2*Math.exp( -1*( waveRadiusForBite[k]- dist )*( waveRadiusForBite[k]- dist ) ) ;
+                        opacity +=  3.2*Math.exp( -1*( waveRadiusForBite[k]- dist )*( waveRadiusForBite[k]- dist ) ) ;
     
                         if (biteOnce[k])
                         {
@@ -502,7 +499,7 @@ function waveAnimation()
             if (waveRadiusForTurn != -1 && dist <=12)
             {
                 
-                opacity +=  1.5*Math.exp(-1*( waveRadiusForTurn - dist)*( waveRadiusForTurn - dist) );
+                opacity +=  1.6*Math.exp(-1*( waveRadiusForTurn - dist)*( waveRadiusForTurn - dist) );
                 
                 if (turnOnce){
                     waveRadiusForTurn++;
@@ -517,8 +514,9 @@ function waveAnimation()
 
             if(gameOver)
             {
-                dist = distance( (x - gameOverPosition.x) , (y - gameOverPosition.y) );
-                opacity +=  4*Math.exp(-1*( waveRadiusForGameOver - dist)*( waveRadiusForTurn - dist) );
+                dist = distance( (x - headIndex.x) , (y - headIndex.y) );
+                opacity += 8*Math.exp(-1*( waveRadiusForGameOver - dist)*( waveRadiusForGameOver - dist) );
+
             }
     
 
@@ -527,11 +525,8 @@ function waveAnimation()
             grid[y][x].style.height = Math.round(opacity) + "px";
         }
     }
-    if(gameOver)
-    {
-        if(waveRadiusForGameOver<40){
-            waveRadiusForGameOver++;
-        }
+    if(waveRadiusForGameOver<40){
+        waveRadiusForGameOver++;
     }
     console.log(waveRadiusForGameOver);
 
