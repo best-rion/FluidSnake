@@ -1,0 +1,101 @@
+*{padding: 0;margin: 0;box-sizing: border-box;}
+
+html {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body{height: 100vh;width: 100%;}
+
+.flex{display: flex;}
+
+#container{
+    position: relative;
+    top: 150px;
+    height: 804px;
+    width: 704px;
+    background-color: #333;
+    border: 2px solid rgb(255, 153, 0);
+    margin-left: auto;
+    margin-right: auto;
+}
+#food{
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    transform: translateX(4px) translateY(4px);
+    background-color: #e4f128;
+    top: 100px;
+    left: 100px;
+    z-index: 1;
+}
+.cell{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-color: #41ff30;
+    z-index: 1;
+}
+p{
+    position: absolute;
+    top: 50px;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    font-size: 30px;
+}
+#score{
+    background-color: rgb(255, 1, 1);
+    color: white;
+    padding: 0px 5px;
+    font-weight: bold;
+}
+#gameOver{
+    background-color: #000;
+    color: white;
+    padding: 0px 5px;
+    display: none;
+}
+#button{
+    height: 70px;
+    width: 100px;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    font-size: 23px;
+    background-color: #fff;
+    color: #000;
+}
+
+/* Fluid */
+
+.point
+{
+    position: absolute;
+    background-color:rgb(255, 255, 255);
+    opacity: 0.6;
+    transform: translate(-50%, -50%);
+}
+
+#tail1{
+    height: 16px;
+    width: 16px;
+    transform: translateX(2px) translateY(2px);
+}
+#tail2{
+    height: 12px;
+    width: 12px;
+    transform: translateX(4px) translateY(4px);
+}
+#tail3{
+    height: 8px;
+    width: 8px;
+    transform: translateX(6px) translateY(6px);
+}
+
+
+
+
+
+
+
+
