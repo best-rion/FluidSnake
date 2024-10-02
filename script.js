@@ -221,6 +221,7 @@ function frame()
                         waveRadiusForTurn = 0;
                         turnPositionX = headIndex.x;
                         turnPositionY = headIndex.y;
+                    }
                     else if ((xDiff < 0) && (lastSwipe != "left")) 
                     {
                         /* right swipe */
