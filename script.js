@@ -1,35 +1,6 @@
-function myAtan(x, y)
-{   
-    if(y>=0)
-    {
-        if(x==0)
-        {
-            return 3.1416/2;
-        }
-        else if (x>0)
-        {
-            return Math.abs( Math.atan(y/x));
-        }
-        else{
-            return 3.1416 - Math.atan( Math.abs(y/x) );
-        }
-    }
-    else
-    {
-        if(x==0)
-        {
-            return -3.1416/2;
-
-        }else if (x>0)
-        {
-            return -Math.abs( Math.atan(y/x));
-        }
-        else{
-            return -3.1416 + Math.atan( Math.abs(y/x) );
-        }
+function distance(x,y){
+    return Math.pow( x*x + y*y , 0.5 )
 }
-}
-
 
 
 var container = document.getElementById("container");
@@ -136,16 +107,9 @@ for( var i=0; i<MAX_WAVES_FOR_FOOD; i++)
 }
 
 
-const MAX_WAVES_FOR_TURN = 3;
-var waveRadiusForTurn = new Array(MAX_WAVES_FOR_TURN);
-var turnPositions = new Array(MAX_WAVES_FOR_TURN);
-for( var i=0; i<MAX_WAVES_FOR_TURN; i++)
-{
-    waveRadiusForTurn[i] = -1;
-    turnPositions[i] = {x:null, y:null};
-}
-var waveNumberForTurn = 0;
-
+var waveRadiusForTurn = -1;
+var turnPositionX;
+var turnPositionY;
 
 function frame()
 {
@@ -187,34 +151,30 @@ function frame()
                 if (e.keyCode == '38' && lastKey != "bottom")
                 {
                     key = "top";
-                    waveRadiusForTurn[waveNumberForTurn] = 0;
-                    turnPositions[waveNumberForTurn].x = headIndex.x;
-                    turnPositions[waveNumberForTurn].y = headIndex.y;
-                    waveNumberForTurn++;
+                    waveRadiusForTurn= 0;
+                    turnPositionX = headIndex.x;
+                    turnPositionY = headIndex.y;
                 }
                 else if (e.keyCode == '39' && lastKey != "left")
                 {
                     key = "right";
-                    waveRadiusForTurn[waveNumberForTurn] = 0;
-                    turnPositions[waveNumberForTurn].x = headIndex.x;
-                    turnPositions[waveNumberForTurn].y = headIndex.y;
-                    waveNumberForTurn++;
+                    waveRadiusForTurn = 0;
+                    turnPositionX = headIndex.x;
+                    turnPositionY = headIndex.y;
                 }
                 else if (e.keyCode == '40' && lastKey != "top")
                 {
                     key = "bottom";
-                    waveRadiusForTurn[waveNumberForTurn] = 0;
-                    turnPositions[waveNumberForTurn].x = headIndex.x;
-                    turnPositions[waveNumberForTurn].y = headIndex.y;
-                    waveNumberForTurn++;
+                    waveRadiusForTurn = 0;
+                    turnPositionX = headIndex.x;
+                    turnPositionY = headIndex.y;
                 }
                 else if (e.keyCode == '37' && lastKey != "right") 
                 {
                     key = "left";
-                    waveRadiusForTurn[waveNumberForTurn] = 0;
-                    turnPositions[waveNumberForTurn].x = headIndex.x;
-                    turnPositions[waveNumberForTurn].y = headIndex.y;
-                    waveNumberForTurn++;
+                    waveRadiusForTurn = 0;
+                    turnPositionX = headIndex.x;
+                    turnPositionY = headIndex.y;
                 }
             }
             
@@ -257,19 +217,18 @@ function frame()
                     {
                         /* left swipe */
                         swipe = "left";
-                        //waveRadiusForTurn[waveNumberForTurn] = 0;
-                        //turnPositions[waveNumberForTurn].x = headIndex.x;
-                        //turnPositions[waveNumberForTurn].y = headIndex.y;
-                        //waveNumberForTurn++;
-                    }
+                        
+                        waveRadiusForTurn = 0;
+                        turnPositionX = headIndex.x;
+                        turnPositionY = headIndex.y;
                     else if ((xDiff < 0) && (lastSwipe != "left")) 
                     {
                         /* right swipe */
                         swipe = "right";
-                        //waveRadiusForTurn[waveNumberForTurn] = 0;
-                        //turnPositions[waveNumberForTurn].x = headIndex.x;
-                        //turnPositions[waveNumberForTurn].y = headIndex.y;
-                        //waveNumberForTurn++;
+                            
+                        waveRadiusForTurn = 0;
+                        turnPositionX = headIndex.x;
+                        turnPositionY = headIndex.y;
                     }
                 }
                 else
@@ -278,19 +237,19 @@ function frame()
                     {
                         /* up swipe */
                         swipe = "top";
-                        waveRadiusForTurn[waveNumberForTurn] = 0;
-                        turnPositions[waveNumberForTurn].x = headIndex.x;
-                        turnPositions[waveNumberForTurn].y = headIndex.y;
-                        waveNumberForTurn++;
+                        
+                        waveRadiusForTurn = 0;
+                        turnPositionX = headIndex.x;
+                        turnPositionY = headIndex.y;
                     }
                     else if ((yDiff < 0) && (lastSwipe != "top")) 
                     {
                         /* down swipe */
                         swipe = "bottom";
-                        waveRadiusForTurn[waveNumberForTurn] = 0;
-                        turnPositions[waveNumberForTurn].x = headIndex.x;
-                        turnPositions[waveNumberForTurn].y = headIndex.y;
-                        waveNumberForTurn++;
+                        
+                        waveRadiusForTurn = 0;
+                        turnPositionX = headIndex.x;
+                        turnPositionY = headIndex.y;    
                     }
                 }
                 /* reset values */
@@ -298,10 +257,6 @@ function frame()
                 yDown = null;
             };
 
-            if(waveNumberForTurn==MAX_WAVES_FOR_TURN)
-            {
-                waveNumberForTurn=0;
-            }
 
             if (swipe == "top" || key == "top")
             {
@@ -471,13 +426,10 @@ function waveAnimation()
                 if (waveRadiusForBite[k] != -1)
                 {
 
-                    angle = myAtan( (x - foodPositions[k].x) , (y - foodPositions[k].y) );
+                    var dist = distance( (x - foodPositions[k].x), (y - foodPositions[k].y) );
+
     
-                    opacity +=  1.2*Math.exp(-( 
-                                                       Math.pow( Math.abs( waveRadiusForBite[k]*Math.cos(angle) - (x - foodPositions[k].x) ) ,2)
-                                                       +
-                                                       Math.pow( Math.abs( waveRadiusForBite[k]*Math.sin(angle) - (y - foodPositions[k].y) ) ,2) 
-                                                    ));
+                    opacity +=  1.2*Math.exp( -1*( waveRadiusForBite[k]- dist )*( waveRadiusForBite[k]- dist ) ) ;
                     if (x==0 && y==0)
                     {
                         waveRadiusForBite[k]++;
@@ -496,7 +448,7 @@ function waveAnimation()
             {
                 if (waveRadiusForFood[i] != -1)
                 {
-                    angle = myAtan( (x - foodIndex.x) , (y - foodIndex.y) );
+                    angle = Math.atan2( (x - foodIndex.x) , (y - foodIndex.y) );
         
                     opacity +=  0.8*Math.exp(-( 
                                                         Math.pow( Math.abs( waveRadiusForFood[i]*Math.cos(angle) - (x - foodIndex.x) ) ,2)
@@ -518,29 +470,26 @@ function waveAnimation()
 
             
 
-            for(var i=0; i<MAX_WAVES_FOR_TURN; i++)
-                {
-                    if (waveRadiusForTurn[i] != -1)
-                    {
-                        angle = myAtan( (x - turnPositions[i].x) , (y - turnPositions[i].y) );
-            
-                        opacity +=  0.8*Math.exp(-( 
-                                                            Math.pow( Math.abs( waveRadiusForTurn[i]*Math.cos(angle) - (x - turnPositions[i].x) ) ,2)
-                                                            +
-                                                            Math.pow( Math.abs( waveRadiusForTurn[i]*Math.sin(angle) - (y - turnPositions[i].y) ) ,2) 
-                                                        ));
-                        if (x==0 && y==0){
-                            waveRadiusForTurn[i]++;
-                            if(waveRadiusForTurn[i]>12)
-                            {
-                                waveRadiusForTurn[i] = -1;
-                            }
-                
-                        }
-                        
-                    }
+            if (waveRadiusForTurn != -1 && dist((x - turnPositionX) , (y - turnPositionY)) <=12)
+            {
+                angle = Math.atan2( (x - turnPositionX) , (y - turnPositionY) );
     
+                opacity +=  0.8*Math.exp(-( 
+                                                    Math.pow( Math.abs( waveRadiusForTurn*Math.cos(angle) - (x - turnPosition) ) ,2)
+                                                    +
+                                                    Math.pow( Math.abs( waveRadiusForTurn*Math.sin(angle) - (y - turnPositionY) ) ,2) 
+                                                ));
+                if (x==0 && y==0){
+                    waveRadiusForTurn++;
+                    if(waveRadiusForTurn>12)
+                    {
+                        waveRadiusForTurn = -1;
+                    }
+        
                 }
+                
+            }
+    
 
 
             grid[y][x].style.width = Math.round(opacity) + "px";
