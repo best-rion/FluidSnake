@@ -121,7 +121,7 @@ var bodyIndexes = [headIndex];
 
 
 
-const MAX_WAVES_FOR_BITE = 5;
+const MAX_WAVES_FOR_BITE = 3;
 var waveRadiusForBite = new Array(MAX_WAVES_FOR_BITE);
 for( var i=0; i<MAX_WAVES_FOR_BITE; i++)
 {
@@ -132,7 +132,7 @@ var waveNumberForBite = 0;
 
 
 
-const MAX_WAVES_FOR_FOOD = 10;
+const MAX_WAVES_FOR_FOOD = 5;
 var waveRadiusForFood = new Array(MAX_WAVES_FOR_FOOD);
 for( var i=0; i<MAX_WAVES_FOR_FOOD; i++)
 {
@@ -140,7 +140,7 @@ for( var i=0; i<MAX_WAVES_FOR_FOOD; i++)
 }
 
 
-const MAX_WAVES_FOR_TURN = 20;
+const MAX_WAVES_FOR_TURN = 8;
 var waveRadiusForTurn = new Array(MAX_WAVES_FOR_TURN);
 var turnPositions = new Array(MAX_WAVES_FOR_TURN);
 for( var i=0; i<MAX_WAVES_FOR_TURN; i++)
@@ -458,7 +458,7 @@ function frame()
     }
 }
 
-var newInterval = setInterval( waveAnimation, 120 );
+var newInterval = setInterval( waveAnimation, 110 );
 var count = 0;
 var waveNumberForFood = 0;
 function waveAnimation()
@@ -486,7 +486,7 @@ function waveAnimation()
 
                     var angle = myAtan( (x - foodPositions[k].x) , (y - foodPositions[k].y) );
     
-                    opacity +=  8*Math.pow(2.71828, -( 
+                    opacity +=  4*Math.pow(2.71828, -( 
                                                        Math.pow( Math.abs( waveRadiusForBite[k]*Math.cos(angle) - (x - foodPositions[k].x) ) ,2)
                                                        +
                                                        Math.pow( Math.abs( waveRadiusForBite[k]*Math.sin(angle) - (y - foodPositions[k].y) ) ,2) 
@@ -504,7 +504,7 @@ function waveAnimation()
                 {
                     var angle = myAtan( (x - foodIndex.x) , (y - foodIndex.y) );
         
-                    opacity +=  3*Math.pow(2.71828, -( 
+                    opacity +=  2*Math.pow(2.71828, -( 
                                                         Math.pow( Math.abs( waveRadiusForFood[i]*Math.cos(angle) - (x - foodIndex.x) ) ,2)
                                                         +
                                                         Math.pow( Math.abs( waveRadiusForFood[i]*Math.sin(angle) - (y - foodIndex.y) ) ,2) 
@@ -521,7 +521,7 @@ function waveAnimation()
                     {
                         var angle = myAtan( (x - turnPositions[i].x) , (y - turnPositions[i].y) );
             
-                        opacity +=  5*Math.pow(2.71828, -( 
+                        opacity +=  3*Math.pow(2.71828, -( 
                                                             Math.pow( Math.abs( waveRadiusForTurn[i]*Math.cos(angle) - (x - turnPositions[i].x) ) ,2)
                                                             +
                                                             Math.pow( Math.abs( waveRadiusForTurn[i]*Math.sin(angle) - (y - turnPositions[i].y) ) ,2) 
