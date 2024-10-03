@@ -79,7 +79,7 @@ function changeButtonState()
     }
 }
 
-var id = setInterval(frame, 100);
+var id = setInterval(frame, 130);
 var gameOver = false;
 var waveRadiusForGameOver = 0;
 
@@ -479,7 +479,7 @@ function waveAnimation()
                 
                 if (waveRadiusForFood[i] != -1 && dist <= 18)
                 {
-                    opacity +=  0.8*Math.exp( -1*( waveRadiusForFood[i] - dist )*( waveRadiusForFood[i] - dist ) );
+                    opacity +=  1*Math.exp( -1*( waveRadiusForFood[i] - dist )*( waveRadiusForFood[i] - dist ) );
 
                      if (foodOnce[i]){
                         waveRadiusForFood[i]++;
@@ -516,9 +516,6 @@ function waveAnimation()
             {
                 dist = distance( (x - headIndex.x) , (y - headIndex.y) );
                 opacity +=12*Math.exp(-1*( waveRadiusForGameOver - dist)*( waveRadiusForGameOver - dist) );
-
-
-                console.log( Math.exp(-1*( waveRadiusForGameOver - dist)*( waveRadiusForGameOver - dist) ));
             }
     
 
