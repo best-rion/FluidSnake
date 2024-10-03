@@ -515,20 +515,25 @@ function waveAnimation()
             if(gameOver)
             {
                 dist = distance( (x - headIndex.x) , (y - headIndex.y) );
-                opacity += 8*Math.exp(-1*( waveRadiusForGameOver - dist)*( waveRadiusForGameOver - dist) );
+                opacity +=12*Math.exp(-1*( waveRadiusForGameOver - dist)*( waveRadiusForGameOver - dist) );
 
+
+                console.log( Math.exp(-1*( waveRadiusForGameOver - dist)*( waveRadiusForGameOver - dist) ));
             }
     
-
 
             grid[y][x].style.width = Math.round(opacity) + "px";
             grid[y][x].style.height = Math.round(opacity) + "px";
         }
     }
-    if(waveRadiusForGameOver<40){
-        waveRadiusForGameOver++;
+    if(gameOver){
+
+        if(waveRadiusForGameOver<50){
+            waveRadiusForGameOver++;
+        }else{
+            gameOver = false;
+        }
     }
-    console.log(waveRadiusForGameOver);
 
 
     if(count==10){
