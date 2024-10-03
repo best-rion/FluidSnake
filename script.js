@@ -32,7 +32,7 @@ for (var y=0; y<containerHeight; y+=20)
     grid.push( row );
 }
 
-
+Object.freeze(grid);
 
 
 
@@ -42,7 +42,7 @@ for (var y=0; y<containerHeight; y+=20)
 
 
 
-var lastSwipe, swipe, lastKey, key, headX = 0, headY= 0, foodX = 100, foodY = 100, bodySize = 1;
+var lastSwipe, swipe, lastKey, key, bodySize = 1;
 
 
 
@@ -84,6 +84,7 @@ var gameOver = false;
 var waveRadiusForGameOver = 0;
 
 var cellDivs = [head];
+
 var headIndex = {x: 0, y: 0};
 var bodyIndexes = [headIndex];
 
@@ -100,7 +101,7 @@ var waveNumberForBite = 0;
 
 
 
-const MAX_WAVES_FOR_FOOD = 8;
+const MAX_WAVES_FOR_FOOD = 2;
 var waveRadiusForFood = new Array(MAX_WAVES_FOR_FOOD);
 for( var i=0; i<MAX_WAVES_FOR_FOOD; i++)
 {
@@ -134,10 +135,10 @@ function frame()
         for (var i=0; i<bodySize; i++)
         {
             cellDivs[i].style.display = "none";
-            tail1.style.display = "none";
-            tail2.style.display = "none";
-            tail3.style.display = "none";
         }
+        tail1.style.display = "none";
+        tail2.style.display = "none";
+        tail3.style.display = "none";
     }
     else
     {
@@ -417,7 +418,7 @@ function frame()
     }
 }
 
-var newInterval = setInterval( waveAnimation, 120);
+var newInterval = setInterval( waveAnimation, 100);
 var count = 0;
 var waveNumberForFood = 0;
 
@@ -455,7 +456,7 @@ function waveAnimation()
                     if (dist <= 30)
                     {
     
-                        opacity +=  3.2*Math.exp( -1*( waveRadiusForBite[k]- dist )*( waveRadiusForBite[k]- dist ) ) ;
+                        opacity +=  4*Math.exp( -1*( waveRadiusForBite[k]- dist )*( waveRadiusForBite[k]- dist )/6 ) ;
     
                         if (biteOnce[k])
                         {
@@ -499,7 +500,7 @@ function waveAnimation()
             if (waveRadiusForTurn != -1 && dist <=12)
             {
                 
-                opacity +=  1.6*Math.exp(-1*( waveRadiusForTurn - dist)*( waveRadiusForTurn - dist) );
+                opacity +=  1.6*Math.exp(-1*( waveRadiusForTurn - dist)*( waveRadiusForTurn - dist)/2 );
                 
                 if (turnOnce){
                     waveRadiusForTurn++;
@@ -515,7 +516,7 @@ function waveAnimation()
             if(gameOver)
             {
                 dist = distance( (x - headIndex.x) , (y - headIndex.y) );
-                opacity +=12*Math.exp(-1*( waveRadiusForGameOver - dist)*( waveRadiusForGameOver - dist) );
+                opacity +=12*Math.exp(-1*( waveRadiusForGameOver - dist)*( waveRadiusForGameOver - dist)/16 );
             }
     
 
