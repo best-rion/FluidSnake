@@ -79,7 +79,7 @@ function changeButtonState()
     }
 }
 
-var id = setInterval(frame, 150);
+var id = setInterval(frame, 100);
 var gameOver = false;
 var waveRadiusForGameOver = 0;
 
