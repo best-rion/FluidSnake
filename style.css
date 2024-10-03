@@ -21,10 +21,10 @@ body{height: 100vh;width: 100%;}
 }
 #food{
     position: absolute;
-    height: 12px;
-    width: 12px;
-    transform: translateX(4px) translateY(4px);
-    background-color: #e4f128;
+    height: 16px;
+    width: 16px;
+    transform: translateX(2px) translateY(2px);
+    background-color: #fbff09;
     top: 100px;
     left: 100px;
     z-index: 1;
