@@ -514,6 +514,10 @@ function waveAnimation()
                 {
                     grid[y][x].style.backgroundColor = "#41ff30";
                 }
+                else
+                {
+                    grid[y][x].style.backgroundColor = "#ffffff";
+                }
             }
     
 
