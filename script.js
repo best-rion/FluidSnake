@@ -510,7 +510,7 @@ function waveAnimation()
             {
                 dist = distance( (x - headIndex.x) , (y - headIndex.y) );
                 opacity +=12*Math.exp(-1*( waveRadiusForGameOver - dist)*( waveRadiusForGameOver - dist)/16 );
-                if (opacity>8)
+                if (opacity>10)
                 {
                     grid[y][x].style.backgroundColor = "#41ff30";
                 }
