@@ -288,7 +288,7 @@ function frame()
             {
                 headIndex.y += height;
             }
-            hif (headIndex.x == -1)
+            if (headIndex.x == -1)
             {
                 headIndex.x += width;
             }
