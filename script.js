@@ -42,7 +42,7 @@ Object.freeze(grid);
 
 
 
-var lastSwipe, swipe, lastKey, key, bodySize = 1;
+var dx=0,dy=0,d=20, bodySize = 1;
 
 
 
@@ -151,35 +151,38 @@ function frame()
                 
             ////////////// For PC //////////////
             document.onkeydown = checkKey;
-
-            lastKey = key;
+                
             function checkKey(e)
             {
 
-                if (e.keyCode == '38' && lastKey != "bottom")
+                if (e.keyCode == '38' && dy===0)//top
                 {
-                    key = "top";
+                    dx=0;
+                    dy=-1;
                     waveRadiusForTurn= 0;
                     turnPositionX = headIndex.x;
                     turnPositionY = headIndex.y;
                 }
-                else if (e.keyCode == '39' && lastKey != "left")
+                else if (e.keyCode == '39' && dx===0)//right
                 {
-                    key = "right";
+                    dx=1;
+                    dy=0;
                     waveRadiusForTurn = 0;
                     turnPositionX = headIndex.x;
                     turnPositionY = headIndex.y;
                 }
-                else if (e.keyCode == '40' && lastKey != "top")
+                else if (e.keyCode == '40' && dy===0)//botyom
                 {
-                    key = "bottom";
+                    dx=0;
+                    dy=1;
                     waveRadiusForTurn = 0;
                     turnPositionX = headIndex.x;
                     turnPositionY = headIndex.y;
                 }
-                else if (e.keyCode == '37' && lastKey != "right") 
+                else if (e.keyCode == '37' && dx===0) //left
                 {
-                    key = "left";
+                    dx=-1;
+                    dy=0;
                     waveRadiusForTurn = 0;
                     turnPositionX = headIndex.x;
                     turnPositionY = headIndex.y;
@@ -218,22 +221,24 @@ function frame()
 
                 var xDiff = xDown - xUp;
                 var yDiff = yDown - yUp;
-                lastSwipe = swipe;
+                
                 if (Math.abs(xDiff) > Math.abs(yDiff)) /*most significant*/
                 {
-                    if ((xDiff > 0) && (lastSwipe != "right"))
+                    if ((xDiff > 0) && (dx===0))
                     {
                         /* left swipe */
-                        swipe = "left";
+                        dx=-1;
+                        dy=0;
                         
                         waveRadiusForTurn = 0;
                         turnPositionX = headIndex.x;
                         turnPositionY = headIndex.y;
                     }
-                    else if ((xDiff < 0) && (lastSwipe != "left")) 
+                    else if ((xDiff < 0) && (dx===0)) 
                     {
                         /* right swipe */
-                        swipe = "right";
+                        dx=1;
+                        dy=0;
                             
                         waveRadiusForTurn = 0;
                         turnPositionX = headIndex.x;
@@ -242,19 +247,21 @@ function frame()
                 }
                 else
                 {
-                    if ((yDiff > 0) && (lastSwipe != "bottom"))
+                    if ((yDiff > 0) && (dy===0))
                     {
                         /* up swipe */
-                        swipe = "top";
+                        dx=0;
+                        dy=-1;
                         
                         waveRadiusForTurn = 0;
                         turnPositionX = headIndex.x;
                         turnPositionY = headIndex.y;
                     }
-                    else if ((yDiff < 0) && (lastSwipe != "top")) 
+                    else if ((yDiff < 0) && (dy===0)) 
                     {
                         /* down swipe */
-                        swipe = "bottom";
+                        dx=0;
+                        dy=1;
                         
                         waveRadiusForTurn = 0;
                         turnPositionX = headIndex.x;
@@ -266,43 +273,29 @@ function frame()
                 yDown = null;
             };
 
+            headIndex.x+=dx;
+            headIndex.y+=dy;
+            
+            if (headIndex.y == height)
+            {
+                headIndex.y -= height;
+            }
+            if (headIndex.x == width)
+            {
+                headIndex.x -= width;
+            }
+            if (headIndex.y == -1)
+            {
+                headIndex.y += height;
+            }
+            hif (headIndex.x == -1)
+            {
+                headIndex.x += width;
+            }
 
-            if (swipe == "top" || key == "top")
-            {
-                headIndex.y -= 1;
-                if (headIndex.y == -1)
-                {
-                    headIndex.y += height;
-                }
-                head.style.top = (headIndex.y * 20) + "px";
-            } 
-            else if (swipe == "right" || key == "right") 
-            {
-                headIndex.x += 1;
-                if (headIndex.x == width)
-                {
-                    headIndex.x -= width;
-                }
-                head.style.left = (headIndex.x * 20) + "px";
-            }
-            else if (swipe == "bottom" || key == "bottom")
-            {
-                headIndex.y += 1;
-                if (headIndex.y == height)
-                {
-                    headIndex.y -= height;
-                }
-                head.style.top = (headIndex.y * 20) + "px";
-            }
-            else if (swipe == "left" || key == "left")
-            {
-                headIndex.x -= 1;
-                if (headIndex.x == -1)
-                {
-                    headIndex.x += width;
-                }
-                head.style.left = (headIndex.x * 20) + "px";
-            }
+            head.style.left = (headIndex.x * 20) + "px";
+            head.style.top = (headIndex.y * 20) + "px";
+
 
             //////////// LOGIC FOR TURNING (END) ///////////////
             }
