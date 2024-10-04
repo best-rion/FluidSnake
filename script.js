@@ -79,7 +79,7 @@ function changeButtonState()
     }
 }
 
-var id = setInterval(frame, 110);
+var id = setInterval(frame, 125);
 var gameOver = false;
 var waveRadiusForGameOver = 0;
 
@@ -411,7 +411,7 @@ function frame()
     }
 }
 
-var newInterval = setInterval( waveAnimation, 90);
+var newInterval = setInterval( waveAnimation, 100);
 var count = 0;
 var waveNumberForFood = 0;
 
