@@ -513,6 +513,7 @@ function waveAnimation()
                 if (opacity>8)
                 {
                     grid[y][x].style.backgroundColor = "#41ff30";
+                }
             }
     
 
