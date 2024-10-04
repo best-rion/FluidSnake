@@ -79,7 +79,7 @@ function changeButtonState()
     }
 }
 
-var id = setInterval(frame, 130);
+var id = setInterval(frame, 110);
 var gameOver = false;
 var waveRadiusForGameOver = 0;
 
@@ -411,7 +411,7 @@ function frame()
     }
 }
 
-var newInterval = setInterval( waveAnimation, 100);
+var newInterval = setInterval( waveAnimation, 90);
 var count = 0;
 var waveNumberForFood = 0;
 
@@ -510,6 +510,9 @@ function waveAnimation()
             {
                 dist = distance( (x - headIndex.x) , (y - headIndex.y) );
                 opacity +=12*Math.exp(-1*( waveRadiusForGameOver - dist)*( waveRadiusForGameOver - dist)/16 );
+                if (opacity>8)
+                {
+                    grid[y][x].style.backgroundColor = "#41ff30";
             }
     
 
