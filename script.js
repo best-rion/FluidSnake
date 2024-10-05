@@ -88,8 +88,6 @@ var cellDivs = [head];
 var headIndex = {x: 0, y: 0};
 var bodyIndexes = [headIndex];
 
-
-
 const MAX_WAVES_FOR_BITE = 3;
 var waveRadiusForBite = new Array(MAX_WAVES_FOR_BITE);
 for( var i=0; i<MAX_WAVES_FOR_BITE; i++)
@@ -371,20 +369,17 @@ function frame()
             var putYourOldPositionHere;
 
             if (bodySize > 1) {
-
-                for (var i = 1; i < bodySize; i++) {
                     
-                    putYourOldPositionHere = {x:bodyIndexes[i].x, y:bodyIndexes[i].y};
+                    putYourOldPositionHere = {x:bodyIndexes[bodySize-1].x, y:bodyIndexes[bodySize-1].y};
 
-                    bodyIndexes[i].x = takeNewPositionFromHere.x;
-                    bodyIndexes[i].y = takeNewPositionFromHere.y;
+                    bodyIndexes[bodySize-1].x = takeNewPositionFromHere.x;
+                    bodyIndexes[bodySize-1].y = takeNewPositionFromHere.y;
 
 
-                    cellDivs[i].style.left = (bodyIndexes[i].x * 20) + "px";
-                    cellDivs[i].style.top = (bodyIndexes[i].y * 20) + "px";
+                    cellDivs[bodySize-1].style.left = (bodyIndexes[bodySize-1].x * 20) + "px";
+                    cellDivs[bodySize-1].style.top = (bodyIndexes[bodySize-1].y * 20) + "px";
 
                     takeNewPositionFromHere = putYourOldPositionHere; // The next cell will take its new position from what the the previous cell has left for it.
-                }
             }
             
             putYourOldPositionHere = {x:tail1Index.x, y:tail1Index.y};
