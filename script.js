@@ -118,9 +118,8 @@ function frame()
 
     for (var i = 1; i < bodySize; i++)
     {
-        var cellIndex = bodyIndexes[i];
 
-        if ( cellIndex.x == headIndex.x && cellIndex.y == headIndex.y )
+        if ( parseInt( celldivs[i].style.left )/20 == headIndex.x && parseInt( celldivs[i].style.left )/20 == headIndex.y )
         {
             gameOver = true;
         }
@@ -187,7 +186,7 @@ function frame()
                     for (var i = 0; i < bodySize; i++)
                     {
 
-                        if ((foodIndex.x == bodyIndexes[i].x) && (foodIndex.y == bodyIndexes[i].y))
+                        if ((foodIndex.x == parseInt( celldivs[i].style.left )/20) && (foodIndex.y == parseInt( celldivs[i].style.top )/20))
                         {
                             positionForNewFoodFound = false;
                             break;
@@ -372,7 +371,6 @@ function frame()
             var takeNewPositionFromHere = {x: parseInt( cellDivs[tailDiv].style.left ) /20, 
                                            y: parseInt( cellDivs[tailDiv].style.top  ) /20};
             var putYourOldPositionHere;
-            score.innerHTML = ""+takeNewPositionFromHere.x + ","+ takeNewPositionFromHere.y ;
             
             putYourOldPositionHere = {x:tail1Index.x, y:tail1Index.y};
             tail1Index.x = takeNewPositionFromHere.x;
