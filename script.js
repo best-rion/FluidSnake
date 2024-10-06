@@ -369,9 +369,9 @@ function frame()
 
             
                 
-            var takeNewPositionFromHere = {x:cellDivs[tailDiv].style.left/20, y:cellDivs[tailDiv].style.top/20};
+            var takeNewPositionFromHere = {x: cellDivs[tailDiv].style.left /20, y: cellDivs[tailDiv].style.top /20};
             var putYourOldPositionHere;
-            score.innerHTML = ""+takeNewPositionFromHere.x+","+takeNewPositionFromHere.y;
+            score.innerHTML = ""+cellDivs[tailDiv].style.left + ","+ cellDivs[tailDiv].style.top;
             
             putYourOldPositionHere = {x:tail1Index.x, y:tail1Index.y};
             tail1Index.x = takeNewPositionFromHere.x;
