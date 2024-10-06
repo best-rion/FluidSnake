@@ -119,7 +119,7 @@ function frame()
     for (var i = 1; i < bodySize; i++)
     {
 
-        if ( parseInt( celldivs[i].style.left )/20 == headIndex.x && parseInt( celldivs[i].style.top )/20 == headIndex.y )
+        if ( parseInt( cellDivs[i].style.left )/20 == headIndex.x && parseInt( cellDivs[i].style.top )/20 == headIndex.y )
         {
             gameOver = true;
         }
@@ -186,7 +186,7 @@ function frame()
                     for (var i = 0; i < bodySize; i++)
                     {
 
-                        if ((foodIndex.x == parseInt( celldivs[i].style.left )/20) && (foodIndex.y == parseInt( celldivs[i].style.top )/20))
+                        if ((foodIndex.x == parseInt( cellDivs[i].style.left )/20) && (foodIndex.y == parseInt( cellDivs[i].style.top )/20))
                         {
                             positionForNewFoodFound = false;
                             break;
