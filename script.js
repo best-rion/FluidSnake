@@ -203,8 +203,9 @@ function frame()
                 newCell.setAttribute("class", "cell"); // for css and stuff
                 document.getElementById("container").appendChild( newCell );
                 
-                cellDivs.splice(headDiv+1,0,newCell );
-                cellIndexes.splice(headDiv+1,0,{x: null, y: null});
+                cellDivs.splice(headDiv,0,newCell );
+                cellIndexes.splice(headDiv,0,{x: null, y: null});
+                headDiv++;
 
                 bodySize++;
             }
