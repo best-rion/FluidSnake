@@ -84,9 +84,9 @@ var gameOver = false;
 var waveRadiusForGameOver = 0;
 
 var cellDivs = [head];
-
+var headDiv = 0;
+var tailDiv = null;
 var headIndex = {x: 0, y: 0};
-var bodyIndexes = [headIndex];
 
 
 
@@ -144,8 +144,69 @@ function frame()
     {
         if (button.innerHTML == "Pause") // It means the game is going on.
         {
-            var lastPositionOfHead = {x:headIndex.x, y:headIndex.y}; // We are gonna turn the snake. We better store its current head position to pass it to the next cell;
 
+            // We moved a frame and Head has got new position.
+
+            if ((headIndex.x == foodIndex.x) && (headIndex.y == foodIndex.y)) 
+            {
+                score.innerHTML = "" + bodySize;
+
+                
+
+                ////////////////   FLUID ANIMATION (START)   ///////////////////
+                //var audio = new Audio("snake.ogg")
+                //audio.play();
+
+
+                var foodPosition = {x:null, y:null};
+                foodPosition.x = foodIndex.x;
+                foodPosition.y = foodIndex.y;
+
+                waveRadiusForBite[waveNumberForBite] = 0;
+                foodPositions[waveNumberForBite] = foodPosition;
+                waveNumberForBite++;
+                 
+                if (waveNumberForBite==MAX_WAVES_FOR_BITE)
+                {
+                    waveNumberForBite = 0;
+                }
+
+                ////////////////   FLUID ANIMATION (END)   ///////////////////
+                
+                
+                // Finding new random position for food
+                var positionForNewFoodFound = false;
+
+                while ( !positionForNewFoodFound )
+                {
+                    foodIndex.x = Math.floor(Math.random() * width);
+                    foodIndex.y = Math.floor(Math.random() * height);
+
+                    positionForNewFoodFound = true;
+
+                    for (var i = 0; i < bodySize; i++)
+                    {
+
+                        if ((foodIndex.x == bodyIndexes[i].x) && (foodIndex.y == bodyIndexes[i].y))
+                        {
+                            positionForNewFoodFound = false;
+                            break;
+                        }
+                    }
+                }
+
+                food.style.left = (foodIndex.x * 20) + "px";
+                food.style.top = (foodIndex.y * 20) + "px";
+
+
+                // Adding new cell to Snake's body
+                var newCell = document.createElement("div");
+                newCell.setAttribute("class", "cell"); // for css and stuff
+                document.getElementById("container").appendChild( newCell );
+                
+                cellDivs.splice(headDiv+1,0,newCell );
+                bodySize++;
+            }
             //////// LOGIC FOR TURNING (START) ///////////////
             {
                 
@@ -292,100 +353,25 @@ function frame()
             {
                 headIndex.x += width;
             }
+                
+            tailDiv = headDiv;
+            headDiv--;
+            if (headDiv<0)
+            {
+                headDiv = bodySize-1;
+            }
+            cellDivs[headDiv].style.left = (headIndex.x * 20) + "px";
+            cellDivs[headDiv].style.top = (headIndex.y * 20) + "px";
 
-            head.style.left = (headIndex.x * 20) + "px";
-            head.style.top = (headIndex.y * 20) + "px";
-
-
+            
             //////////// LOGIC FOR TURNING (END) ///////////////
             }
-            // We moved a frame and Head has got new position.
 
-            if ((headIndex.x == foodIndex.x) && (headIndex.y == foodIndex.y)) 
-            {
-                score.innerHTML = "" + bodySize;
-
+            
                 
-
-                ////////////////   FLUID ANIMATION (START)   ///////////////////
-                //var audio = new Audio("snake.ogg")
-                //audio.play();
-
-
-                var foodPosition = {x:null, y:null};
-                foodPosition.x = foodIndex.x;
-                foodPosition.y = foodIndex.y;
-
-                waveRadiusForBite[waveNumberForBite] = 0;
-                foodPositions[waveNumberForBite] = foodPosition;
-                waveNumberForBite++;
-                 
-                if (waveNumberForBite==MAX_WAVES_FOR_BITE)
-                {
-                    waveNumberForBite = 0;
-                }
-
-                ////////////////   FLUID ANIMATION (END)   ///////////////////
-                
-                
-                // Finding new random position for food
-                var positionForNewFoodFound = false;
-
-                while ( !positionForNewFoodFound )
-                {
-                    foodIndex.x = Math.floor(Math.random() * width);
-                    foodIndex.y = Math.floor(Math.random() * height);
-
-                    positionForNewFoodFound = true;
-
-                    for (var i = 0; i < bodySize; i++)
-                    {
-
-                        if ((foodIndex.x == bodyIndexes[i].x) && (foodIndex.y == bodyIndexes[i].y))
-                        {
-                            positionForNewFoodFound = false;
-                            break;
-                        }
-                    }
-                }
-
-                food.style.left = (foodIndex.x * 20) + "px";
-                food.style.top = (foodIndex.y * 20) + "px";
-
-
-                // Adding new cell to Snake's body
-                var newCell = document.createElement("div");
-                newCell.setAttribute("class", "cell"); // for css and stuff
-                document.getElementById("container").appendChild( newCell );
-
-                cellDivs.push( newCell );
-
-                bodyIndexes.push({x:null, y:null});
-
-                bodySize++;
-            }
-
-
-                
-            var takeNewPositionFromHere = lastPositionOfHead;
+            var takeNewPositionFromHere = {x:cellDivs[tailDiv].style.left/20, y:cellDivs[tailDiv].style.top/20};
             var putYourOldPositionHere;
 
-            if (bodySize > 1) {
-
-                for (var i = 1; i < bodySize; i++) {
-                    
-                    putYourOldPositionHere = {x:bodyIndexes[i].x, y:bodyIndexes[i].y};
-
-                    bodyIndexes[i].x = takeNewPositionFromHere.x;
-                    bodyIndexes[i].y = takeNewPositionFromHere.y;
-
-
-                    cellDivs[i].style.left = (bodyIndexes[i].x * 20) + "px";
-                    cellDivs[i].style.top = (bodyIndexes[i].y * 20) + "px";
-
-                    takeNewPositionFromHere = putYourOldPositionHere; // The next cell will take its new position from what the the previous cell has left for it.
-                }
-            }
             
             putYourOldPositionHere = {x:tail1Index.x, y:tail1Index.y};
             tail1Index.x = takeNewPositionFromHere.x;
