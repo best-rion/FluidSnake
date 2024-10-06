@@ -79,7 +79,7 @@ function changeButtonState()
     }
 }
 
-var id = setInterval(frame, 125);
+var id = setInterval(frame, 120);
 var gameOver = false;
 var waveRadiusForGameOver = 0;
 
@@ -361,7 +361,7 @@ function frame()
                 headDiv = bodySize-1;
             }
 
-            var takeNewPositionFromHere = cellIndexes[headDiv];
+            var takeNewPositionFromHere = {x: cellIndexes[headDiv].x, y:  cellIndexes[headDiv].y};
             
             cellIndexes[headDiv].x = headIndex.x;
             cellIndexes[headDiv].y = headIndex.y;
