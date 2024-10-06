@@ -85,6 +85,7 @@ var waveRadiusForGameOver = 0;
 
 var cellDivs = [head];
 var headDiv = 0;
+var cellIndexes =[{x: 0, y: 0}];
 var headIndex = {x: 0, y: 0};
 
 
@@ -118,7 +119,7 @@ function frame()
     for (var i = 0; i < bodySize; i++)
     {
 
-        if ( i != headDiv && parseInt( cellDivs[i].style.left )/20 == headIndex.x && parseInt( cellDivs[i].style.top )/20 == headIndex.y )
+        if ( i != headDiv && cellIndexes[i].x == headIndex.x && cellIndexes[i].y == headIndex.y )
         {
             gameOver = true;
         }
@@ -185,7 +186,7 @@ function frame()
                     for (var i = 0; i < bodySize; i++)
                     {
 
-                        if ((foodIndex.x == parseInt( cellDivs[i].style.left )/20) && (foodIndex.y == parseInt( cellDivs[i].style.top )/20))
+                        if ((foodIndex.x == cellIndexes[i].x) && (foodIndex.y == cellIndexes[i].y))
                         {
                             positionForNewFoodFound = false;
                             break;
@@ -203,6 +204,8 @@ function frame()
                 document.getElementById("container").appendChild( newCell );
                 
                 cellDivs.splice(headDiv+1,0,newCell );
+                cellIndexes.splice(headDiv+1,0,{x: null, y: null});
+
                 bodySize++;
             }
             //////// LOGIC FOR TURNING (START) ///////////////
@@ -358,9 +361,11 @@ function frame()
                 headDiv = bodySize-1;
             }
 
-            var takeNewPositionFromHere = {x: parseInt( cellDivs[headDiv].style.left ) /20, 
-                                           y: parseInt( cellDivs[headDiv].style.top  ) /20};
-                
+            var takeNewPositionFromHere = cellIndexes[headDiv];
+            
+            cellIndexes[headDiv].x = headIndex.x;
+            cellIndexes[headDiv].y = headIndex.y;
+    
             cellDivs[headDiv].style.left = (headIndex.x * 20) + "px";
             cellDivs[headDiv].style.top = (headIndex.y * 20) + "px";
 
