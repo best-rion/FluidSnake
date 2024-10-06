@@ -116,10 +116,10 @@ var turnPositionY;
 function frame()
 {
 
-    for (var i = 1; i < bodySize; i++)
+    for (var i = 0; i < bodySize; i++)
     {
 
-        if ( parseInt( cellDivs[i].style.left )/20 == headIndex.x && parseInt( cellDivs[i].style.top )/20 == headIndex.y )
+        if ( i != headDiv && parseInt( cellDivs[i].style.left )/20 == headIndex.x && parseInt( cellDivs[i].style.top )/20 == headIndex.y )
         {
             gameOver = true;
         }
