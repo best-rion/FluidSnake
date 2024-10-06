@@ -362,10 +362,10 @@ function frame()
             }
 
             var takeNewPositionFromHere = {x: cellIndexes[headDiv].x, y:  cellIndexes[headDiv].y};
-            
+            score.innerHTML = ""+cellIndexes[headDiv].x +","+cellIndexes[headDiv].y;
             cellIndexes[headDiv].x = headIndex.x;
             cellIndexes[headDiv].y = headIndex.y;
-    
+    score.innerHTML = score.innerHTML + "->"+cellIndexes[headDiv].x +","+cellIndexes[headDiv].y;
             cellDivs[headDiv].style.left = (headIndex.x * 20) + "px";
             cellDivs[headDiv].style.top = (headIndex.y * 20) + "px";
 
