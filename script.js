@@ -369,9 +369,10 @@ function frame()
 
             
                 
-            var takeNewPositionFromHere = {x: cellDivs[tailDiv].style.left /20, y: cellDivs[tailDiv].style.top /20};
+            var takeNewPositionFromHere = {x: parseInt( cellDivs[tailDiv].style.left ) /20, 
+                                           y: parseInt( cellDivs[tailDiv].style.top  ) /20};
             var putYourOldPositionHere;
-            score.innerHTML = ""+cellDivs[tailDiv].style.left + ","+ cellDivs[tailDiv].style.top;
+            score.innerHTML = ""+takeNewPositionFromHere.x + ","+ takeNewPositionFromHere.y ;
             
             putYourOldPositionHere = {x:tail1Index.x, y:tail1Index.y};
             tail1Index.x = takeNewPositionFromHere.x;
