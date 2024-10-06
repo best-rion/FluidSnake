@@ -352,14 +352,15 @@ function frame()
                 headIndex.x += width;
             }
                 
-            var takeNewPositionFromHere = {x: parseInt( cellDivs[headDiv].style.left ) /20, 
-                                           y: parseInt( cellDivs[headDiv].style.top  ) /20};
-          
             headDiv--;
             if (headDiv<0)
             {
                 headDiv = bodySize-1;
             }
+
+            var takeNewPositionFromHere = {x: parseInt( cellDivs[headDiv].style.left ) /20, 
+                                           y: parseInt( cellDivs[headDiv].style.top  ) /20};
+                
             cellDivs[headDiv].style.left = (headIndex.x * 20) + "px";
             cellDivs[headDiv].style.top = (headIndex.y * 20) + "px";
 
