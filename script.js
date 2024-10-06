@@ -1,3 +1,4 @@
+// Final
 function distance(x,y){
     return Math.pow( x*x + y*y , 0.5 )
 }
