@@ -119,7 +119,7 @@ function frame()
     for (var i = 1; i < bodySize; i++)
     {
 
-        if ( parseInt( celldivs[i].style.left )/20 == headIndex.x && parseInt( celldivs[i].style.left )/20 == headIndex.y )
+        if ( parseInt( celldivs[i].style.left )/20 == headIndex.x && parseInt( celldivs[i].style.top )/20 == headIndex.y )
         {
             gameOver = true;
         }
