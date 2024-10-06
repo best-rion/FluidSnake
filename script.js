@@ -85,7 +85,6 @@ var waveRadiusForGameOver = 0;
 
 var cellDivs = [head];
 var headDiv = 0;
-var tailDiv = null;
 var headIndex = {x: 0, y: 0};
 
 
@@ -353,7 +352,9 @@ function frame()
                 headIndex.x += width;
             }
                 
-            tailDiv = headDiv;
+            var takeNewPositionFromHere = {x: parseInt( cellDivs[headDiv].style.left ) /20, 
+                                           y: parseInt( cellDivs[headDiv].style.top  ) /20};
+          
             headDiv--;
             if (headDiv<0)
             {
@@ -368,8 +369,6 @@ function frame()
 
             
                 
-            var takeNewPositionFromHere = {x: parseInt( cellDivs[tailDiv].style.left ) /20, 
-                                           y: parseInt( cellDivs[tailDiv].style.top  ) /20};
             var putYourOldPositionHere;
             
             putYourOldPositionHere = {x:tail1Index.x, y:tail1Index.y};
