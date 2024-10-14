@@ -433,7 +433,7 @@ function waveAnimation()
             for ( var k=0; k<MAX_WAVES_FOR_BITE; k++)
             {
 
-                if (waveRadiusForBite[k] != -1 && dist <= 30)
+                if (waveRadiusForBite[k] != -1)
                 {
                     dist = distance( (x - foodPositions[k].x), (y - foodPositions[k].y) );
 
