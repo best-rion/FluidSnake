@@ -1,2 +1,2 @@
 # FluidSnakeJS
-visit: https://best-rion.github.io/FluidSnakeJS
+visit: https://best-rion.github.io/FluidSnake
