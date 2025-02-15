@@ -338,7 +338,7 @@ function frame()
                     }
 
                     canTakeInstruction = false;
-                    setTimeout(()=>{canTakeInstruction = true}, 500);
+                    setTimeout(()=>{canTakeInstruction = true}, 800);
                 }
                 
                 /* reset values */
