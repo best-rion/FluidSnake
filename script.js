@@ -114,6 +114,8 @@ var waveRadiusForTurn = -1;
 var turnPositionX;
 var turnPositionY;
 
+var canTakeInstruction = true;
+
 function frame()
 {
 
@@ -259,7 +261,6 @@ function frame()
 
             var xDown = null;
             var yDown = null;
-            var canTakeInstruction = true;
 
             function getTouches(evt)
             {
@@ -276,8 +277,7 @@ function frame()
                     yDown = firstTouch.clientY;
 
                     canTakeInstruction = false;
-                    button.style.color = "#0f0";
-                    //setTimeout(()=>{canTakeInstruction = true}, 2000);
+                    setTimeout(()=>{canTakeInstruction = true}, 2000);
                 }
             };
 
