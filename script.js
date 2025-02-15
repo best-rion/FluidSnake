@@ -276,7 +276,7 @@ function frame()
 
             function handleTouchMove(evt) 
             {
-                if (!xDown || !yDown) 
+                if (!xDown || !yDown || !canTakeInstruction) 
                 {
                     return;
                 }
@@ -287,59 +287,56 @@ function frame()
                 var xDiff = xDown - xUp;
                 var yDiff = yDown - yUp;
 
-                if (canTakeInstruction)
+                if (Math.abs(xDiff) > Math.abs(yDiff)) /*most significant*/
                 {
-                    if (Math.abs(xDiff) > Math.abs(yDiff)) /*most significant*/
+                    if ((xDiff > 0) && (dx===0))
                     {
-                        if ((xDiff > 0) && (dx===0))
-                        {
-                            /* left swipe */
-                            dx=-1;
-                            dy=0;
-                            
-                            waveRadiusForTurn = 0;
-                            turnPositionX = headIndex.x;
-                            turnPositionY = headIndex.y;
-                        }
-                        else if ((xDiff < 0) && (dx===0)) 
-                        {
-                            /* right swipe */
-                            dx=1;
-                            dy=0;
-                                
-                            waveRadiusForTurn = 0;
-                            turnPositionX = headIndex.x;
-                            turnPositionY = headIndex.y;
-                        }
+                        /* left swipe */
+                        dx=-1;
+                        dy=0;
+                        
+                        waveRadiusForTurn = 0;
+                        turnPositionX = headIndex.x;
+                        turnPositionY = headIndex.y;
                     }
-                    else
+                    else if ((xDiff < 0) && (dx===0)) 
                     {
-                        if ((yDiff > 0) && (dy===0))
-                        {
-                            /* up swipe */
-                            dx=0;
-                            dy=-1;
+                        /* right swipe */
+                        dx=1;
+                        dy=0;
                             
-                            waveRadiusForTurn = 0;
-                            turnPositionX = headIndex.x;
-                            turnPositionY = headIndex.y;
-                        }
-                        else if ((yDiff < 0) && (dy===0)) 
-                        {
-                            /* down swipe */
-                            dx=0;
-                            dy=1;
-                            
-                            waveRadiusForTurn = 0;
-                            turnPositionX = headIndex.x;
-                            turnPositionY = headIndex.y;    
-                        }
+                        waveRadiusForTurn = 0;
+                        turnPositionX = headIndex.x;
+                        turnPositionY = headIndex.y;
                     }
-
-                    canTakeInstruction = false;
-                    setTimeout(()=>{canTakeInstruction = true}, 2000);
                 }
-                
+                else
+                {
+                    if ((yDiff > 0) && (dy===0))
+                    {
+                        /* up swipe */
+                        dx=0;
+                        dy=-1;
+                        
+                        waveRadiusForTurn = 0;
+                        turnPositionX = headIndex.x;
+                        turnPositionY = headIndex.y;
+                    }
+                    else if ((yDiff < 0) && (dy===0)) 
+                    {
+                        /* down swipe */
+                        dx=0;
+                        dy=1;
+                        
+                        waveRadiusForTurn = 0;
+                        turnPositionX = headIndex.x;
+                        turnPositionY = headIndex.y;    
+                    }
+                }
+
+                canTakeInstruction = false;
+                setTimeout(()=>{canTakeInstruction = true}, 2000);
+            
                 /* reset values */
                 xDown = null;
                 yDown = null;
