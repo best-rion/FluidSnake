@@ -269,18 +269,16 @@ function frame()
 
             function handleTouchStart(evt) 
             {
-                if (!canTakeInstruction)
+                if (canTakeInstruction)
                 {
-                    return;
+                    const firstTouch = getTouches(evt)[0];
+                    xDown = firstTouch.clientX;
+                    yDown = firstTouch.clientY;
+
+                    canTakeInstruction = false;
+                    button.style.color = "#0f0";
+                    //setTimeout(()=>{canTakeInstruction = true}, 2000);
                 }
-
-                const firstTouch = getTouches(evt)[0];
-                xDown = firstTouch.clientX;
-                yDown = firstTouch.clientY;
-
-                canTakeInstruction = false;
-                button.style.color = "#00f";
-                //setTimeout(()=>{canTakeInstruction = true}, 2000);
             };
 
             function handleTouchMove(evt) 
