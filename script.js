@@ -255,7 +255,7 @@ function frame()
             
             ////////////// For Mobile //////////////
             document.addEventListener('touchstart', handleTouchStart, false);
-            document.addEventListener('touchmove', ()=>{setTimeout(handleTouchMove,500)}, false);
+            document.addEventListener('touchmove', handleTouchMove, false);
 
             var xDown = null;
             var yDown = null;
@@ -273,12 +273,10 @@ function frame()
                 yDown = firstTouch.clientY;
             };
 
+            var canTakeInstruction = true;
+
             function handleTouchMove(evt) 
             {
-                setTimeout(
-
-                )
-
                 if (!xDown || !yDown) 
                 {
                     return;
@@ -289,53 +287,60 @@ function frame()
 
                 var xDiff = xDown - xUp;
                 var yDiff = yDown - yUp;
-                
-                if (Math.abs(xDiff) > Math.abs(yDiff)) /*most significant*/
+
+                if (canTakeInstruction)
                 {
-                    if ((xDiff > 0) && (dx===0))
+                    if (Math.abs(xDiff) > Math.abs(yDiff)) /*most significant*/
                     {
-                        /* left swipe */
-                        dx=-1;
-                        dy=0;
-                        
-                        waveRadiusForTurn = 0;
-                        turnPositionX = headIndex.x;
-                        turnPositionY = headIndex.y;
-                    }
-                    else if ((xDiff < 0) && (dx===0)) 
-                    {
-                        /* right swipe */
-                        dx=1;
-                        dy=0;
+                        if ((xDiff > 0) && (dx===0))
+                        {
+                            /* left swipe */
+                            dx=-1;
+                            dy=0;
                             
-                        waveRadiusForTurn = 0;
-                        turnPositionX = headIndex.x;
-                        turnPositionY = headIndex.y;
+                            waveRadiusForTurn = 0;
+                            turnPositionX = headIndex.x;
+                            turnPositionY = headIndex.y;
+                        }
+                        else if ((xDiff < 0) && (dx===0)) 
+                        {
+                            /* right swipe */
+                            dx=1;
+                            dy=0;
+                                
+                            waveRadiusForTurn = 0;
+                            turnPositionX = headIndex.x;
+                            turnPositionY = headIndex.y;
+                        }
                     }
-                }
-                else
-                {
-                    if ((yDiff > 0) && (dy===0))
+                    else
                     {
-                        /* up swipe */
-                        dx=0;
-                        dy=-1;
-                        
-                        waveRadiusForTurn = 0;
-                        turnPositionX = headIndex.x;
-                        turnPositionY = headIndex.y;
+                        if ((yDiff > 0) && (dy===0))
+                        {
+                            /* up swipe */
+                            dx=0;
+                            dy=-1;
+                            
+                            waveRadiusForTurn = 0;
+                            turnPositionX = headIndex.x;
+                            turnPositionY = headIndex.y;
+                        }
+                        else if ((yDiff < 0) && (dy===0)) 
+                        {
+                            /* down swipe */
+                            dx=0;
+                            dy=1;
+                            
+                            waveRadiusForTurn = 0;
+                            turnPositionX = headIndex.x;
+                            turnPositionY = headIndex.y;    
+                        }
                     }
-                    else if ((yDiff < 0) && (dy===0)) 
-                    {
-                        /* down swipe */
-                        dx=0;
-                        dy=1;
-                        
-                        waveRadiusForTurn = 0;
-                        turnPositionX = headIndex.x;
-                        turnPositionY = headIndex.y;    
-                    }
+
+                    canTakeInstruction = false;
+                    setTimeout(()=>{canTakeInstruction = true}, 500);
                 }
+                
                 /* reset values */
                 xDown = null;
                 yDown = null;
