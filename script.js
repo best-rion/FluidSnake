@@ -259,6 +259,7 @@ function frame()
 
             var xDown = null;
             var yDown = null;
+            var canTakeInstruction = true;
 
             function getTouches(evt)
             {
@@ -272,8 +273,6 @@ function frame()
                 xDown = firstTouch.clientX;
                 yDown = firstTouch.clientY;
             };
-
-            var canTakeInstruction = true;
 
             function handleTouchMove(evt) 
             {
@@ -338,7 +337,7 @@ function frame()
                     }
 
                     canTakeInstruction = false;
-                    setTimeout(()=>{canTakeInstruction = true}, 800);
+                    setTimeout(()=>{canTakeInstruction = true}, 2000);
                 }
                 
                 /* reset values */
