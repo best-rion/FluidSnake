@@ -279,7 +279,6 @@ function frame()
                 yDown = firstTouch.clientY;
 
                 canTakeInstruction = false;
-
                 button.style.color = "#00f";
                 //setTimeout(()=>{canTakeInstruction = true}, 2000);
             };
