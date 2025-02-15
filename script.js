@@ -255,7 +255,7 @@ function frame()
             
             ////////////// For Mobile //////////////
             document.addEventListener('touchstart', handleTouchStart, false);
-            document.addEventListener('touchmove', handleTouchMove, false);
+            document.addEventListener('touchmove', ()=>{setTimeout(handleTouchMove,500)}, false);
 
             var xDown = null;
             var yDown = null;
@@ -275,6 +275,10 @@ function frame()
 
             function handleTouchMove(evt) 
             {
+                setTimeout(
+
+                )
+
                 if (!xDown || !yDown) 
                 {
                     return;
