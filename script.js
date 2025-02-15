@@ -280,7 +280,7 @@ function frame()
 
                 canTakeInstruction = false;
 
-                button.innerHTML = "Touched";
+                button.style.color = "#00f";
                 //setTimeout(()=>{canTakeInstruction = true}, 2000);
             };
 
