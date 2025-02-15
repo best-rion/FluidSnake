@@ -335,7 +335,7 @@ function frame()
                 }
 
                 canTakeInstruction = false;
-                setTimeout(()=>{canTakeInstruction = true}, 2000);
+                //setTimeout(()=>{canTakeInstruction = true}, 2000);
             
                 /* reset values */
                 xDown = null;
