@@ -277,7 +277,7 @@ function frame()
                     yDown = firstTouch.clientY;
 
                     canTakeInstruction = false;
-                    setTimeout(()=>{canTakeInstruction = true}, 500);
+                    setTimeout(()=>{canTakeInstruction = true}, 250);
                 }
             };
 
