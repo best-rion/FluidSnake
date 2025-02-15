@@ -269,14 +269,22 @@ function frame()
 
             function handleTouchStart(evt) 
             {
+                if (!canTakeInstruction)
+                {
+                    return;
+                }
+
                 const firstTouch = getTouches(evt)[0];
                 xDown = firstTouch.clientX;
                 yDown = firstTouch.clientY;
+
+                canTakeInstruction = false;
+                //setTimeout(()=>{canTakeInstruction = true}, 2000);
             };
 
             function handleTouchMove(evt) 
             {
-                if (!xDown || !yDown || !canTakeInstruction) 
+                if (!xDown || !yDown) 
                 {
                     return;
                 }
@@ -333,9 +341,6 @@ function frame()
                         turnPositionY = headIndex.y;    
                     }
                 }
-
-                canTakeInstruction = false;
-                //setTimeout(()=>{canTakeInstruction = true}, 2000);
             
                 /* reset values */
                 xDown = null;
