@@ -279,9 +279,7 @@ function frame()
                 yDown = firstTouch.clientY;
 
                 canTakeInstruction = false;
-
-                button.innerHTML = "Touched";
-                //setTimeout(()=>{canTakeInstruction = true}, 2000);
+                setTimeout(()=>{canTakeInstruction = true}, 2000);
             };
 
             function handleTouchMove(evt) 
